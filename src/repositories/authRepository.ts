@@ -1,12 +1,12 @@
 import { prisma } from "@/config";
-import { User } from "@prisma/client";
+import { Session, User } from "@prisma/client";
 
 async function checkDuplicateEmail(email: string): Promise<User> {
     return prisma.user.findFirst({
         where: {
             email
         }
-    })
+    });
 };
 
 async function createNewUser(name: string, email: string, password: string): Promise<User> {
@@ -16,12 +16,40 @@ async function createNewUser(name: string, email: string, password: string): Pro
             email,
             password,
         }
-    })
-}
+    });
+};
+
+async function createSession(userId: number, token: string): Promise<Session> {
+    return prisma.session.create({
+        data: {
+            userId,
+            token
+        }
+    });
+};
+
+async function findSessionByUserId(userId: number): Promise<Session> {
+    return prisma.session.findFirst({
+        where: {
+            userId,
+        }
+    });
+};
+
+async function deleteSession(sessionId: number): Promise<Session> {
+    return prisma.session.delete({
+        where: {
+            id: sessionId
+        }
+    });
+};
 
 const authRepositories = {
     checkDuplicateEmail,
-    createNewUser
+    createNewUser,
+    createSession,
+    findSessionByUserId,
+    deleteSession
 };
 
 export default authRepositories;
