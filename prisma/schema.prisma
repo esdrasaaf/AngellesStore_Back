@@ -25,3 +25,33 @@ model Session {
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(6)
   User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model Brands {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Categories {
+  id        Int      @id @default(autoincrement())
+  name      String
+  image     String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Colors {
+  id        Int      @id @default(autoincrement())
+  name      String
+  hexCode   String   @db.VarChar(8)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model PromotionsImages {
+  id        Int      @id @default(autoincrement())
+  image     String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+}

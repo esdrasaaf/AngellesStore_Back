@@ -12,7 +12,7 @@ async function createUser(name: string, email: string, password: string): Promis
     return await authRepositories.createNewUser(name, email, hashedPassword);
 }
 
-async function loginUser(email: string, password: string): Promise<Session> {
+async function loginUser(email: string, password: string): Promise<LoginReponse> {
     const user = await authRepositories.checkDuplicateEmail(email);
     if (!user) throw notFoundError();
 
@@ -23,7 +23,14 @@ async function loginUser(email: string, password: string): Promise<Session> {
     if (session) await authRepositories.deleteSession(session.id);
 
     const token = uuid();
-    return await authRepositories.createSession(user.id, token);
+    const createdSession = await authRepositories.createSession(user.id, token)
+
+    return { createdSession, userName: user.name };
+}
+
+type LoginReponse = {
+    createdSession: Session,
+    userName: string
 }
 
 const authServices ={
