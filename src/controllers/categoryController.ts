@@ -7,6 +7,6 @@ export async function getAllCategories(req: Request, res: Response) {
         const categories = await categoryServices.findManyCategories();
         return res.status(httpStatus.OK).send(categories);
     } catch (error) {
-        return res.status(httpStatus.NOT_FOUND).send("Não temos categorias disponíveis no momento!");
+        return res.status(error.status).send("Não temos categorias disponíveis no momento!");
     }
 }

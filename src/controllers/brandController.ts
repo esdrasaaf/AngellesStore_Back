@@ -7,6 +7,6 @@ export async function getAllBrands(req: Request, res: Response) {
         const brands = await brandServices.findManyBrands();
         return res.status(httpStatus.OK).send(brands);
     } catch (error) {
-        return res.status(httpStatus.NOT_FOUND).send("Não temos marcas disponíveis no momento!");
+        return res.status(error.status).send("Não temos marcas disponíveis no momento!");
     }
 }
