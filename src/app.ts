@@ -5,7 +5,7 @@ import { loadEnv, connectDb, disconnectDB } from "./config";
 
 loadEnv();
 
-import { authenticationRouter, brandRouter, categoryRouter, colorRouter } from "@/routers";
+import { authenticationRouter, brandRouter, categoryRouter, colorRouter, promotionImagesRouter } from "@/routers";
 
 const app = express();
 
@@ -17,6 +17,7 @@ app
   .use("/categories", categoryRouter)
   .use("/brands", brandRouter)
   .use("/colors", colorRouter)
+  .use("/promos", promotionImagesRouter)
 
 export function init(): Promise<Express> {
     connectDb();
