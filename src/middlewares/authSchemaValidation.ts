@@ -15,7 +15,7 @@ function validate(schema: ObjectSchema) {
     if (!error) {
       next();
     } else {
-      res.status(httpStatus.BAD_REQUEST).send("E-mail ou senhas inválidos!");
+      res.status(httpStatus.BAD_REQUEST).send("E-mail ou senha inválidos!");
     }
   };
 }
