@@ -7,7 +7,7 @@ const productsRouters = Router();
 productsRouters
   .all("/*", authenticateToken)
   .get("/", getAllProducts)
-  .get("/:productId", getProductById)
+  .get("/review/:productId", getProductById)
   .get("/categories/:categoryId", getProductByCategory)
   .get("/colors/:colorId", getProductByColor)
   .get("/brands/:brandId", getProductByBrand)

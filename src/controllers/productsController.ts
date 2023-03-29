@@ -23,6 +23,7 @@ export async function getProductById(req: AuthenticatedRequest, res: Response) {
         const products = await productsServices.findUniqueProduct(userId, Number(productId));
         return res.status(httpStatus.OK).send(products);
     } catch (error) {
+        console.log(error.status)
         if (error.status === 404) return res.status(error.status).send("Este produto não existe em nosso estoque!");
         return res.status(error.status).send("Você precisa estar logado para acessar os produtos da loja!");
     }
