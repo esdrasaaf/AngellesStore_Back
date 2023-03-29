@@ -13,6 +13,16 @@ async function findManyProducts(userId: number): Promise<Products[]>  {
     return products
 }
 
+async function findUniqueProduct(userId: number, productId: number): Promise<Products>  {
+    const session = await authRepositories.findSessionByUserId(userId);
+    if (!session) throw unauthorizedError();
+
+    const product = await productsRepositories.getProductsById(productId);
+    if (!product) throw notFoundError();
+
+    return product
+}
+
 async function findManyByCategoryId(userId: number, categoryId: number): Promise<Products[]>  {
     const session = await authRepositories.findSessionByUserId(userId);
     if (!session) throw unauthorizedError();
@@ -69,7 +79,8 @@ const productsServices = {
     findManyBestSellers,
     findManyByCategoryId,
     findManyByColorId,
-    findManyByBrandId
+    findManyByBrandId,
+    findUniqueProduct
 }
 
 export default productsServices;

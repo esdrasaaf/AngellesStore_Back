@@ -6,8 +6,6 @@ import httpStatus from "http-status";
 export async function getHistoricNavigation(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
 
-    console.log(userId)
-
     try {
         const historics = await historicServices.findManyHistoric(userId);
         return res.status(httpStatus.OK).send(historics);

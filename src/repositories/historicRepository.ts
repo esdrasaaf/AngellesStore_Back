@@ -8,6 +8,9 @@ async function getHistorics(userId: number): Promise<Historics[]> {
         },
         orderBy: {
             updatedAt: "desc"
+        },
+        include: {
+            Products: true
         }
     });
 };

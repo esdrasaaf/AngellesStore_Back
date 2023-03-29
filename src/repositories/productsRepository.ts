@@ -13,6 +13,11 @@ async function getProductsById(id: number): Promise<Products> {
     return prisma.products.findFirst({
         where: { 
             id 
+        },
+        include: {
+            Categories: true,
+            Colors: true,
+            Brands: true
         }
     })
 };

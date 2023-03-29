@@ -15,6 +15,19 @@ export async function getAllProducts(req: AuthenticatedRequest, res: Response) {
     }
 }
 
+export async function getProductById(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+    const { productId } = req.params;
+
+    try {
+        const products = await productsServices.findUniqueProduct(userId, Number(productId));
+        return res.status(httpStatus.OK).send(products);
+    } catch (error) {
+        if (error.status === 404) return res.status(error.status).send("Este produto não existe em nosso estoque!");
+        return res.status(error.status).send("Você precisa estar logado para acessar os produtos da loja!");
+    }
+}
+
 export async function getProductByCategory(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
     const { categoryId } = req.params;
