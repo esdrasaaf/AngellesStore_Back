@@ -8,10 +8,7 @@ async function findManyHistoric(userId: number): Promise<Historics[]> {
     const session = await authRepositories.findSessionByUserId(userId);
     if (!session) throw unauthorizedError();
 
-    const historics = await historicRepositories.getHistorics(userId);
-    if (historics.length === 0) throw notFoundError();
-
-    return historics
+    return await historicRepositories.getHistorics(userId);
 }
 
 async function insertUniqueHistoric(userId: number, productId: number): Promise<Historics> {

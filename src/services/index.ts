@@ -5,3 +5,4 @@ export * from "./colorsServices";
 export * from "./promoImageService";
 export * from "./historicServices";
 export * from "./ProductsServices";
+export * from "./CartServices";
