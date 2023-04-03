@@ -9,10 +9,11 @@ async function checkDuplicateEmail(email: string): Promise<User> {
     });
 };
 
-async function createNewUser(name: string, email: string, password: string): Promise<User> {
+async function createNewUser(name: string, image: string, email: string, password: string): Promise<User> {
     return prisma.user.create({
         data: {
             name,
+            image,
             email,
             password,
         }
