@@ -5,6 +5,9 @@ async function getProducts(): Promise<Products[]> {
     return prisma.products.findMany({
         orderBy:{
             id: 'asc'
+        },
+        include: {
+            Avaliations: true
         }
     });
 };
