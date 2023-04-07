@@ -6,3 +6,4 @@ export * from "./promotionImagesRoutes";
 export * from "./productRouters";
 export * from "./browsingHistoryRouter";
 export * from "./cartRouter";
+export * from "./savesRouter";

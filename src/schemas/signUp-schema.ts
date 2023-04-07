@@ -3,7 +3,7 @@ import { SignUpParams } from "@/protocols";
 
 export const createUserSchema = Joi.object<SignUpParams>({
     name: Joi.string().required(),
-    image: Joi.string().uri().required(),
+    image: Joi.string().allow('').uri(),
     email: Joi.string().email().required(),
     password: Joi.string().min(4).required(),
   });

@@ -20,7 +20,7 @@ export async function signInPost(req: Request, res: Response) {
 
     try {
         const userData = await authServices.loginUser(email, password);
-        return res.status(httpStatus.OK).send({userId: userData.createdSession.userId, userToken: userData.createdSession.token, userName: userData.userName});
+        return res.status(httpStatus.OK).send({userId: userData.createdSession.userId, userToken: userData.createdSession.token, userName: userData.userName, userPhoto: userData.userPhoto});
     } catch (err) {
         console.log(err)
         if (err.name === "UnauthorizedError") {
