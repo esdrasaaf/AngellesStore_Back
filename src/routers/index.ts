@@ -7,3 +7,4 @@ export * from "./productRouters";
 export * from "./browsingHistoryRouter";
 export * from "./cartRouter";
 export * from "./savesRouter";
+export * from "./userRouter";

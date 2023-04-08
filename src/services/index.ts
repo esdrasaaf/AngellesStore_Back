@@ -7,3 +7,4 @@ export * from "./browsingHistoryServices";
 export * from "./productsServices";
 export * from "./cartServices";
 export * from "./saveServices";
+export * from "./userServices";

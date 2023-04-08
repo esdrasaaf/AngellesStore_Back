@@ -25,13 +25,12 @@ async function loginUser(email: string, password: string): Promise<LoginReponse>
     const token = uuid();
     const createdSession = await authRepositories.createSession(user.id, token)
 
-    return { createdSession, userName: user.name, userPhoto: user.image };
+    return { createdSession, userPassword: password };
 }
 
 type LoginReponse = {
     createdSession: Session,
-    userName: string,
-    userPhoto: string
+    userPassword: string
 }
 
 const authServices ={

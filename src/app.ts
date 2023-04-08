@@ -5,7 +5,7 @@ import { loadEnv, connectDb, disconnectDB } from "./config";
 
 loadEnv();
 
-import { authenticationRouter, brandRouter, cartRouter, categoryRouter, colorRouter, browsingHistoryRouter, productsRouters, promotionImagesRouter, savesRouters } from "@/routers";
+import { authenticationRouter, brandRouter, cartRouter, categoryRouter, colorRouter, browsingHistoryRouter, productsRouters, promotionImagesRouter, savesRouters, userRouters } from "@/routers";
 
 const app = express();
 
@@ -22,6 +22,7 @@ app
   .use("/browsingHistory", browsingHistoryRouter)
   .use("/cart", cartRouter)
   .use("/saves", savesRouters)
+  .use("/user", userRouters)
 
 export function init(): Promise<Express> {
     connectDb();
