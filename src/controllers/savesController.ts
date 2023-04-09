@@ -11,7 +11,6 @@ export async function getSavedProducts(req: AuthenticatedRequest, res: Response)
         return res.status(httpStatus.OK).send(savedProducts);
     } catch (error) {
         if (error.status === 401) return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para ver os produtos salvos!");
-        return res.status(httpStatus.NOT_FOUND).send("Você não salvou nenhum produto ainda!");
     }
 }
 

@@ -1,4 +1,4 @@
-import { getUserData, putUserData } from "@/controllers";
+import { getUserData, putUserData, logoutUser } from "@/controllers";
 import { authenticateToken } from "@/middlewares/authenticationMiddleware";
 import { Router } from "express";
 
@@ -8,5 +8,6 @@ userRouters
   .all("/*", authenticateToken)
   .get("/", getUserData)
   .put("/", putUserData)
+  .delete("/", logoutUser)
  
 export { userRouters };

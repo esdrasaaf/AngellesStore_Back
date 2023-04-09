@@ -1,5 +1,5 @@
 import { prisma } from "@/config";
-import { User } from "@prisma/client";
+import { Session, User } from "@prisma/client";
 import bcrypt from 'bcrypt'
 
 async function getUserById(userId: number): Promise<User> {
@@ -24,9 +24,18 @@ async function putUserDataById(userId: number, userData: UserDataBody): Promise<
     });
 };
 
+async function deleteSessionById(sessionId: number): Promise<Session> {
+    return prisma.session.delete({
+        where: {
+            id: sessionId
+        }
+    });
+};
+
 const userRepository = {
     getUserById,
-    putUserDataById
+    putUserDataById,
+    deleteSessionById
 };
 
 export type UserDataBody = {

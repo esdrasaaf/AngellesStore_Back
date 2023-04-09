@@ -24,6 +24,8 @@ export async function putUserData(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
     const { userDataBody } = req.body;
     const userData = userDataBody as UserDataBody
+    
+    console.log(userData)
 
     try {
         await userServices.updateUserData(userId, userData);
@@ -31,5 +33,17 @@ export async function putUserData(req: AuthenticatedRequest, res: Response) {
     } catch (error) {
         if (error.status === 401) return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para atualizar seus dados!");
         return res.status(httpStatus.NOT_FOUND).send("Você não criou sua conta ainda update!");
+    }
+}
+
+export async function logoutUser(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+
+    try {
+        const response = await userServices.deleteUserSession(userId);
+        return res.status(httpStatus.OK).send("Você deslogou com sucesso!");
+    } catch (error) {
+        if (error.status === 401) return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para deslogar!");
+        return res.status(httpStatus.NOT_FOUND).send("Você não criou sua conta ainda!");
     }
 }
