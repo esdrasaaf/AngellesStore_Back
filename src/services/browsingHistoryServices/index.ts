@@ -26,9 +26,22 @@ async function insertUniqueHistoric(userId: number, productId: number): Promise<
     }
 }
 
+async function deleteUniqueHistoric(userId: number, historicId: number): Promise<BrowsingHistory> {
+    const session = await authRepositories.findSessionByUserId(userId);
+    if (!session) throw unauthorizedError();
+
+    const historicExist = await browsingHistoryRepositories.getHistoricById(historicId);
+    if (!historicExist)  {
+        throw notFoundError()
+    } else {
+        return await browsingHistoryRepositories.deleteHistoricById(historicId);        
+    }
+}
+
 const browsingHistoryServices = {
     findManyHistoric,
-    insertUniqueHistoric
+    insertUniqueHistoric,
+    deleteUniqueHistoric
 }
 
 export default browsingHistoryServices;

@@ -27,3 +27,16 @@ export async function postHistoric(req: AuthenticatedRequest, res: Response) {
     }
 }
 
+export async function deleteHistoric(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+    const { historicId } = req.params;
+
+    try {
+        const response = await browsingHistoryServices.deleteUniqueHistoric(userId, Number(historicId));
+        return res.status(httpStatus.CREATED).send(`Você deletou o histórico de id ${response.id}`);
+    } catch (error) {
+        if (error.status === 404) return res.status(error.status).send("O produto que você escolheu não existe mais em nosso estoque!");
+        return res.status(error.status).send("Você precisa estar logado para adicionar algo em seu histórico!");
+    }
+}
+

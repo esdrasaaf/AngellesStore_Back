@@ -24,8 +24,6 @@ export async function putUserData(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
     const { userDataBody } = req.body;
     const userData = userDataBody as UserDataBody
-    
-    console.log(userData)
 
     try {
         await userServices.updateUserData(userId, userData);

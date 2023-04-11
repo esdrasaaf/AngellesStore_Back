@@ -8,3 +8,4 @@ export * from "./browsingHistoryController";
 export * from "./cartController";
 export * from "./savesController";
 export * from "./userController";
+export * from "./avaliationsController";
