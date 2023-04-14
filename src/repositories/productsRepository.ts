@@ -35,6 +35,20 @@ async function getProducts(productsFilter: ProductsFilter): Promise<Products[]> 
     });
 };
 
+async function getManySearchedProducts(search: string){
+    return prisma.products.findMany({
+        where:{
+            name:{
+                contains: search,
+                mode: "insensitive"
+            }
+        },
+        include: {
+            Avaliations: true
+        }
+    })
+}
+
 async function getProductsById(id: number): Promise<Products> {
     return prisma.products.findFirst({
         where: { 
@@ -43,7 +57,8 @@ async function getProductsById(id: number): Promise<Products> {
         include: {
             Categories: true,
             Colors: true,
-            Brands: true
+            Brands: true,
+            Avaliations: true
         }
     })
 };
@@ -55,6 +70,9 @@ async function getProductsByCategoryId(categoryId: number): Promise<Products[]> 
         }, 
         orderBy: {
             id: 'asc'
+        },
+        include: {
+            Avaliations: true
         }
     });
 };
@@ -106,7 +124,8 @@ const productsRepositories = {
     getProductsByBrandId,
     getProductsByColorId,
     getReleaseProducts,
-    getBestSellersProducts
+    getBestSellersProducts,
+    getManySearchedProducts
 };
 
 export default productsRepositories;

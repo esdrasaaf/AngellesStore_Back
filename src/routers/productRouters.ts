@@ -1,4 +1,4 @@
-import { getAllProducts, getBestSellersProducts, getProductByBrand, getProductByCategory, getProductByColor, getProductById, getReleaseProducts } from "@/controllers";
+import { getAllProducts, getBestSellersProducts, getProductByBrand, getProductByCategory, getProductByColor, getProductById, getReleaseProducts, getSearchProducts } from "@/controllers";
 import { authenticateToken } from "@/middlewares/authenticationMiddleware";
 import { Router } from "express";
 
@@ -8,6 +8,7 @@ productsRouters
   .all("/*", authenticateToken)
   .post("/", getAllProducts)
   .get("/review/:productId", getProductById)
+  .get("/search/:productName", getSearchProducts)
   .get("/categories/:categoryId", getProductByCategory)
   .get("/colors/:colorId", getProductByColor)
   .get("/brands/:brandId", getProductByBrand)

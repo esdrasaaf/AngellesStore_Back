@@ -13,6 +13,7 @@ export async function getUserData(req: AuthenticatedRequest, res: Response) {
             userName: userData.name, 
             userPhoto: userData.image,
             userEmail: userData.email,
+            userId: userData.id
         });
     } catch (error) {
         if (error.status === 401) return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para ver seus dados!");

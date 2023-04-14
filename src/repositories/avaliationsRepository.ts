@@ -8,6 +8,9 @@ async function getAvaliationsByProductId(productId: number): Promise<Avaliations
         },
         include: {
             User: true
+        },
+        orderBy:{
+            createdAt: 'desc'
         }
     });
 };
@@ -19,6 +22,9 @@ async function getAvaliationsByUserId(userId: number): Promise<Avaliations[]> {
         },
         include: {
             Products: true
+        },
+        orderBy:{
+            createdAt: 'desc'
         }
     });
 };

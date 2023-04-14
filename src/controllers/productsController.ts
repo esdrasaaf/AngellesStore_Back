@@ -18,6 +18,19 @@ export async function getAllProducts(req: AuthenticatedRequest, res: Response) {
     }
 }
 
+export async function getSearchProducts(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+    const { productName } = req.params;
+
+    try {
+        const products = await productsServices.findManySearchProducts(userId, productName);
+        return res.status(httpStatus.OK).send(products);
+    } catch (error) {
+        if (error.status === 404) return res.status(error.status).send("Não temos produtos disponíveis no momento!");
+        return res.status(401).send(error.message);
+    }
+}
+
 export async function getProductById(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
     const { productId } = req.params;
@@ -28,7 +41,7 @@ export async function getProductById(req: AuthenticatedRequest, res: Response) {
     } catch (error) {
         console.log(error.status)
         if (error.status === 404) return res.status(error.status).send("Este produto não existe em nosso estoque!");
-        return res.status(error.status).send("Você precisa estar logado para acessar os produtos da loja!");
+        return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para acessar os produtos da loja!");
     }
 }
 
@@ -41,10 +54,9 @@ export async function getProductByCategory(req: AuthenticatedRequest, res: Respo
         return res.status(httpStatus.OK).send(products);
     } catch (error) {
         if (error.status === 404) return res.status(error.status).send("Não temos produtos disponíveis no momento!");
-        return res.status(error.status).send("Você precisa estar logado para acessar os produtos da loja!");
+        return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para acessar os produtos da loja!");
     }
 }
-
 
 export async function getProductByColor(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
@@ -59,7 +71,6 @@ export async function getProductByColor(req: AuthenticatedRequest, res: Response
     }
 }
 
-
 export async function getProductByBrand(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
     const { brandId } = req.params;
@@ -73,7 +84,6 @@ export async function getProductByBrand(req: AuthenticatedRequest, res: Response
     }
 }
 
-
 export async function getReleaseProducts(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
 
@@ -85,7 +95,6 @@ export async function getReleaseProducts(req: AuthenticatedRequest, res: Respons
         return res.status(error.status).send("Você precisa estar logado para acessar os novos produtos!");
     }
 }
-
 
 export async function getBestSellersProducts(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;

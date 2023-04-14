@@ -60,8 +60,8 @@ export async function deleteAvaliations(req: AuthenticatedRequest, res: Response
     const { avaliationId } = req.params;
 
     try {
-        const avaliation = await avaliationsServices.deleteUserAvaliation(userId, Number(avaliationId));
-        return res.status(httpStatus.OK).send(`Você deletou a avaliação de id ${avaliation.id}`);
+        await avaliationsServices.deleteUserAvaliation(userId, Number(avaliationId));
+        return res.status(httpStatus.OK).send(`Avaliação deletada com sucesso`);
     } catch (error) {
         if (error.status === 401) return res.status(httpStatus.UNAUTHORIZED).send("Você precisa estar logado para deletar uma avaliação!");
         return res.status(httpStatus.NOT_FOUND).send("A avaliação que você quer deletar não existe!");
