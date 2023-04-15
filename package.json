@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
     "migration:run": "prisma migrate deploy",
     "migration:generate": "npm run dev:load-envs prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,6 +32,7 @@
     "http-status": "^1.6.2",
     "joi": "^17.8.3",
     "prisma": "^4.11.0",
+    "stripe": "^12.1.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

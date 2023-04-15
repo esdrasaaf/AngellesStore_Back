@@ -37,7 +37,19 @@ export async function deleteProductOfCart(req: AuthenticatedRequest, res: Respon
     } catch (error) {
         if (error.status === 404) return res.status(error.status).send("O produto que você tentou deletar não existe!");
         if (error.status === 403) return res.status(error.status).send("O produto que você tentou deletar não está no seu carrinho!");
-        return res.status(error.status).send("Você deve estar logado para adicionar algo seu carrinho!");
+        return res.status(httpStatus.UNAUTHORIZED).send("Você deve estar logado para adicionar algo seu carrinho!");
+    }
+}
+
+export async function deleteAllCart(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+
+    try {
+        await cartServices.clearUserCart(userId);
+        return res.status(httpStatus.OK).send(`Carrinho esvaziado com sucesso!`);
+    } catch (error) {
+        if (error.status === 401) return res.status(error.status).send("Você deve estar logado para esvaziar seu carrinho!");
+        return res.status(500).send("Algo deu errado");
     }
 }
 
