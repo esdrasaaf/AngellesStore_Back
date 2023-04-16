@@ -1,5 +1,5 @@
 import { prisma } from "@/config";
-import { Purchases } from "@prisma/client";
+import { Prisma, Purchases } from "@prisma/client";
 
 async function createPurchase(purchaseId: string, productId: number, userId: number): Promise<Purchases> {
     return prisma.purchases.create({
@@ -11,7 +11,7 @@ async function createPurchase(purchaseId: string, productId: number, userId: num
     });
 };
 
-async function deletePurchase(purchaseId: string) {
+async function deletePurchase(purchaseId: string): Promise<Prisma.BatchPayload> {
     return prisma.purchases.deleteMany({
         where: {
             purchaseId
@@ -31,7 +31,7 @@ async function findManyPurchaseProducts(userId: number): Promise<Purchases[]> {
     });
 };
 
-async function confirmPurchase(purchaseId: string) {
+async function confirmPurchase(purchaseId: string): Promise<Prisma.BatchPayload> {
     return prisma.purchases.updateMany({
         data: {
             isCompleted: true
@@ -42,11 +42,20 @@ async function confirmPurchase(purchaseId: string) {
     });
 };
 
+async function findManyPurchases(purchaseId: string): Promise<Purchases[]> {
+    return prisma.purchases.findMany({
+        where: {
+            purchaseId
+        }
+    });
+};
+
 const purchaseRepository = {
     createPurchase,
     deletePurchase,
     confirmPurchase,
-    findManyPurchaseProducts
+    findManyPurchaseProducts,
+    findManyPurchases
 };
 
 export default purchaseRepository;
