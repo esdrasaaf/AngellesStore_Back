@@ -15,6 +15,7 @@ function validate(schema: ObjectSchema) {
     if (!error) {
       next();
     } else {
+      if (error.details[0].path[0] === "image") res.status(httpStatus.BAD_REQUEST).send("Url da imagem inválido!");
       res.status(httpStatus.BAD_REQUEST).send("E-mail ou senha inválidos!");
     }
   };

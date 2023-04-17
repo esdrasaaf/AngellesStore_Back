@@ -9,7 +9,8 @@ datasource db {
 
 model User {
   id            Int             @id @default(autoincrement())
-  name          String          @db.VarChar(250)
+  name          String          @db.VarChar(250)  
+  image         String          @default("")
   email         String          @unique @db.VarChar(250)
   password      String          @db.VarChar(250)
   createdAt     DateTime        @default(now()) @db.Timestamp(6)
@@ -96,31 +97,31 @@ model Historics {
 
 model Avaliations {
   id         Int       @id @default(autoincrement())
-  userId     Int
-  productId  Int
+  userId     Int?
+  productId  Int?
   avaliation String
   createdAt  DateTime  @default(now()) @db.Timestamp(6)
   updatedAt  DateTime  @default(now()) @db.Timestamp(6)
-  Products   Products  @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User       User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Products   Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User       User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Cart {
   id        Int       @id @default(autoincrement())
-  userId    Int
-  productId Int
+  userId    Int?
+  productId Int?
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
-  Products  Products  @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User      User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Products  Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model SavedProducts {
   id        Int       @id @default(autoincrement())
-  userId    Int
-  productId Int
+  userId    Int?
+  productId Int?
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
-  Products  Products  @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User      User      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Products  Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
