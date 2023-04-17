@@ -117,6 +117,17 @@ async function getBestSellersProducts(): Promise<Products[]> {
     });
 };
 
+async function incrementNumberOfSales(productId: number, newNumberOfSales: number): Promise<Products> {
+    return prisma.products.update({
+        where: {
+            id: productId
+        },
+        data: {
+            numberOfSales: newNumberOfSales
+        }
+    });
+};
+
 const productsRepositories = {
     getProducts,
     getProductsById,
@@ -125,7 +136,8 @@ const productsRepositories = {
     getProductsByColorId,
     getReleaseProducts,
     getBestSellersProducts,
-    getManySearchedProducts
+    getManySearchedProducts,
+    incrementNumberOfSales
 };
 
 export default productsRepositories;

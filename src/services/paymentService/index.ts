@@ -1,6 +1,7 @@
 import { badRequestError, unauthorizedError } from "@/errors";
 import authRepositories from "@/repositories/authRepository";
 import purchaseRepository from "@/repositories/paymentRepository";
+import productsRepositories from "@/repositories/productsRepository";
 import { Products, Purchases } from "@prisma/client";
 import { Stripe } from "stripe";
 import { v4 as uuid } from "uuid";
@@ -27,7 +28,7 @@ async function createPaymentSession(userId: number, arrayOfProducts: Products[])
             product_data: {
                 name: `${p.name}`
             },
-            unit_amount: p.price,
+            unit_amount: Number(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(p.price).replace("R$", "").replace(",", ".")) * 100,
         }  
         
         return { price_data, quantity: 1 }
@@ -78,11 +79,26 @@ async function excludePayment(userId: number, purchaseId: string) {
     return await purchaseRepository.deletePurchase(purchaseId);
 }
 
+async function incrementNumberOfSales(userId: number, purchaseId: string) {
+    const session = await authRepositories.findSessionByUserId(userId);
+    if (!session) throw unauthorizedError();
+
+    const purchaseProducts = await purchaseRepository.findManyPurchases(purchaseId);
+
+    for (let i = 0; i < purchaseProducts.length; i++) {
+        const newNumberOfSales = await productsRepositories.getProductsById(purchaseProducts[i].productId);
+        await productsRepositories.incrementNumberOfSales(purchaseProducts[i].productId, (newNumberOfSales.numberOfSales + 1))
+    }
+
+    return purchaseProducts
+}
+
 const paymentService = {
     createPaymentSession,
     savePayment,
     excludePayment,
-    getProducts
+    getProducts,
+    incrementNumberOfSales
 }
 
 export default paymentService;

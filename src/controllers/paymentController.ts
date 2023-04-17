@@ -54,3 +54,15 @@ export async function getUserPurchaseProducts(req: AuthenticatedRequest, res: Re
         return res.status(400).send(error.message);
     }
 }
+
+export async function putNumberOfSales(req: AuthenticatedRequest, res: Response) {
+    const { userId } = req;
+    const { purchaseId } = req.params;
+
+    try {
+        await paymentService.incrementNumberOfSales(userId, purchaseId);
+        return res.status(httpStatus.OK).send("Valores atualizados com sucesso!");
+    } catch (error) {
+        return res.status(400).send(error.message);
+    }
+}
