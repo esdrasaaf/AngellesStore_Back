@@ -1,5 +1,5 @@
-import { confirmPurchase, deletePurchase, getUserPurchaseProducts, postPurchase, putNumberOfSales } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { confirmPurchase, deletePurchase, getUserPurchaseProducts, postPurchase, putNumberOfSales } from "../controllers/paymentController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const paymentRouter = Router();

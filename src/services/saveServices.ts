@@ -1,7 +1,8 @@
-import { unauthorizedError, badRequestError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import productsRepositories from "@/repositories/productsRepository";
-import savedRepository, { SavedProductsWithProduct } from "@/repositories/savesRepository";
+import { badRequestError } from "../errors/badRequest-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import productsRepositories from "../repositories/productsRepository";
+import savedRepository, { SavedProductsWithProduct } from "../repositories/savesRepository";
 import { SavedProducts } from "@prisma/client";
 
 async function findManySaveds(userId: number): Promise<SavedProducts[]> {

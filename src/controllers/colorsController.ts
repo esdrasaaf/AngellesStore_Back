@@ -1,4 +1,4 @@
-import colorServices from "@/services/colorsServices";
+import colorServices from "../services/colorsServices";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 

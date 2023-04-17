@@ -1,6 +1,7 @@
-import { notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import userRepository, { UserDataBody } from "@/repositories/userRepository";
+import { notFoundError } from "../errors/notFound-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import userRepository, { UserDataBody } from "../repositories/userRepository";
 import { Session, User } from "@prisma/client";
 
 async function findUserData(userId: number): Promise<User> {

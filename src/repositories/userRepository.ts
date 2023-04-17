@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Session, User } from "@prisma/client";
 import bcrypt from 'bcrypt'
 

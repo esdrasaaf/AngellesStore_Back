@@ -1,5 +1,6 @@
-import { notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import { notFoundError } from "../errors/notFound-error";
+import authRepositories from "../repositories/authRepository";
 import { Session, User } from "@prisma/client";
 import bcrypt from "bcrypt"
 import { v4 as uuid } from "uuid";

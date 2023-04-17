@@ -1,5 +1,14 @@
-import { getAllProducts, getBestSellersProducts, getProductByBrand, getProductByCategory, getProductByColor, getProductById, getReleaseProducts, getSearchProducts } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { 
+  getAllProducts, 
+  getBestSellersProducts, 
+  getProductByBrand, 
+  getProductByCategory, 
+  getProductByColor, 
+  getProductById, 
+  getReleaseProducts, 
+  getSearchProducts 
+} from "../controllers/productsController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const productsRouters = Router();

@@ -1,4 +1,4 @@
-import categoryServices from "@/services/categoryServices";
+import categoryServices from "../services/categoryServices";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 

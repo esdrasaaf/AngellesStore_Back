@@ -1,5 +1,5 @@
-import { notFoundError } from "@/errors";
-import promoImageRepository from "@/repositories/promoImagesRepository";
+import { notFoundError } from "../errors/notFound-error";
+import promoImageRepository from "../repositories/promoImagesRepository";
 import { PromotionsImages } from "@prisma/client";
 
 async function findManyPromotionImages(): Promise<PromotionsImages[]> {

@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Prisma, Purchases } from "@prisma/client";
 
 async function createPurchase(purchaseId: string, productId: number, userId: number): Promise<Purchases> {

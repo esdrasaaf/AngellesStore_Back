@@ -1,4 +1,4 @@
-import { getAllBrands } from "@/controllers";
+import { getAllBrands } from "../controllers/brandController";
 import { Router } from "express";
 
 const brandRouter = Router();

@@ -1,5 +1,5 @@
-import { notFoundError } from "@/errors";
-import categoryRepository from "@/repositories/categoryRepositoy";
+import { notFoundError } from "../errors/notFound-error";
+import categoryRepository from "../repositories/categoryRepositoy";
 import { Categories } from "@prisma/client";
 
 async function findManyCategories(): Promise<Categories[]> {

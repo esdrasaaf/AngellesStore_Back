@@ -1,4 +1,4 @@
-import promotionImageService from "@/services/promoImageService";
+import promotionImageService from "../services/promoImageServices";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 

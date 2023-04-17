@@ -1,5 +1,5 @@
-import { notFoundError } from "@/errors";
-import colorsRepository from "@/repositories/colorRepository";
+import { notFoundError } from "../errors/notFound-error";
+import colorsRepository from "../repositories/colorRepository";
 import { Colors } from "@prisma/client";
 
 async function findManyColors(): Promise<Colors[]> {

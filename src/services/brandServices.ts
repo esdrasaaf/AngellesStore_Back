@@ -1,5 +1,5 @@
-import { notFoundError } from "@/errors";
-import brandRepository from "@/repositories/brandRepository";
+import { notFoundError } from "../errors/notFound-error";
+import brandRepository from "../repositories/brandRepository";
 import { Brands } from "@prisma/client";
 
 async function findManyBrands(): Promise<Brands[]> {

@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Products } from "@prisma/client";
 
 export type ProductsFilter = {

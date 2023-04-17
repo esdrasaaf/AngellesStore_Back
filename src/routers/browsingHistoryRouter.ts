@@ -1,5 +1,5 @@
-import { getHistoricNavigation, postHistoric, deleteHistoric } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { getHistoricNavigation, postHistoric, deleteHistoric } from "../controllers/browsingHistoryController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const browsingHistoryRouter = Router();

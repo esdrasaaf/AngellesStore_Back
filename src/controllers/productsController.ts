@@ -1,6 +1,6 @@
-import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import { ProductsFilter } from "@/repositories/productsRepository";
-import productsServices from "@/services/productsServices";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
+import { ProductsFilter } from "../repositories/productsRepository";
+import productsServices from "../services/productsServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 

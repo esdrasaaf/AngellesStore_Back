@@ -1,5 +1,5 @@
-import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import browsingHistoryServices from "@/services/browsingHistoryServices";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
+import browsingHistoryServices from "../services/browsingHistoryServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 

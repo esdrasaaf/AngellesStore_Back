@@ -1,7 +1,8 @@
-import { badRequestError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import purchaseRepository from "@/repositories/paymentRepository";
-import productsRepositories from "@/repositories/productsRepository";
+import { badRequestError } from "../errors/badRequest-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import purchaseRepository from "../repositories/paymentRepository";
+import productsRepositories from "../repositories/productsRepository";
 import { Products, Purchases } from "@prisma/client";
 import { Stripe } from "stripe";
 import { v4 as uuid } from "uuid";

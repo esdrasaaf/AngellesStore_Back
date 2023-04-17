@@ -1,8 +1,9 @@
-import { badRequestError, notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import avaliationsRepositories from "@/repositories/avaliationsRepository";
-import productsRepositories from "@/repositories/productsRepository";
-import userRepository from "@/repositories/userRepository";
+import { badRequestError } from "../errors/badRequest-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import { notFoundError } from "../errors/notFound-error";
+import authRepositories from "../repositories/authRepository";
+import avaliationsRepositories from "../repositories/avaliationsRepository";
+import productsRepositories from "../repositories/productsRepository";
 import { Avaliations } from "@prisma/client";
 
 async function findManyAvaliations(userId: number, productId: number): Promise<Avaliations[]> {

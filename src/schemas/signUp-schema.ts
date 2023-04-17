@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { SignUpParams } from "@/protocols";
+import { SignUpParams } from "../protocols/authenticationParams";
 
 export const createUserSchema = Joi.object<SignUpParams>({
     name: Joi.string().required(),

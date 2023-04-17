@@ -1,5 +1,5 @@
-import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import savedServices from "@/services/saveServices";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
+import savedServices from "../services/saveServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 
