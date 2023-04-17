@@ -7,3 +7,4 @@ export * from "./productsController";
 export * from "./browsingHistoryController";
 export * from "./cartController";
 export * from "./savesController";
+export * from "./userController";

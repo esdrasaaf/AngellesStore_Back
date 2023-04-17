@@ -7,7 +7,11 @@ async function getSaveds(userId: number): Promise<SavedProducts[]> {
             userId
         },
         include: {
-            Products: true
+            Products: {
+                include: {
+                    Avaliations: true
+                }
+            }
         }
     });
 };
