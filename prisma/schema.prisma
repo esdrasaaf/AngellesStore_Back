@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  name      String    @db.VarChar(250)
-  email     String    @unique @db.VarChar(250)
-  password  String    @db.VarChar(250)
-  createdAt DateTime  @default(now()) @db.Timestamp(6)
-  updatedAt DateTime  @default(now()) @updatedAt @db.Timestamp(6)
+  id        Int         @id @default(autoincrement())
+  name      String      @db.VarChar(250)
+  email     String      @unique @db.VarChar(250)
+  password  String      @db.VarChar(250)
+  createdAt DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt DateTime    @default(now()) @updatedAt @db.Timestamp(6)
+  Historics Historics[]
   Session   Session[]
 }
 
@@ -27,26 +28,29 @@ model Session {
 }
 
 model Brands {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   name      String
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  createdAt DateTime   @default(now()) @db.Timestamp(6)
+  updatedAt DateTime   @default(now()) @db.Timestamp(6)
+  Products  Products[]
 }
 
 model Categories {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   name      String
   image     String
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  createdAt DateTime   @default(now()) @db.Timestamp(6)
+  updatedAt DateTime   @default(now()) @db.Timestamp(6)
+  Products  Products[]
 }
 
 model Colors {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   name      String
-  hexCode   String   @db.VarChar(8)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  hexCode   String     @db.VarChar(8)
+  createdAt DateTime   @default(now()) @db.Timestamp(6)
+  updatedAt DateTime   @default(now()) @db.Timestamp(6)
+  Products  Products[]
 }
 
 model PromotionsImages {
@@ -54,4 +58,32 @@ model PromotionsImages {
   image     String
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Products {
+  id            Int         @id @default(autoincrement())
+  image         String
+  name          String
+  price         Int
+  categoryId    Int
+  colorId       Int
+  brandId       Int
+  description   String
+  numberOfSales Int         @default(0)
+  updatedAt     DateTime    @default(now()) @db.Timestamp(6)
+  createdAt     DateTime    @default(now()) @db.Timestamp(6)
+  Historics     Historics[]
+  Brands        Brands      @relation(fields: [brandId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Categories    Categories  @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Colors        Colors      @relation(fields: [colorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Historics {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  userId    Int
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  Products  Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
