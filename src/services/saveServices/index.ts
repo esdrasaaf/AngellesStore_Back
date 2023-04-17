@@ -8,10 +8,7 @@ async function findManySaveds(userId: number): Promise<SavedProducts[]> {
     const session = await authRepositories.findSessionByUserId(userId);
     if (!session) throw unauthorizedError();
 
-    const savedProducts = await savedRepository.getSaveds(userId);
-    if (savedProducts.length === 0) throw notFoundError();
-
-    return savedProducts
+    return await savedRepository.getSaveds(userId);
 }
 
 async function createSavedProduct(userId: number, productId: number): Promise<SavedProductsWithProduct | "delete"> {

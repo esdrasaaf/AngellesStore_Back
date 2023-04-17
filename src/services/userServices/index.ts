@@ -1,7 +1,7 @@
-import { notFoundError, unauthorizedError, badRequestError } from "@/errors";
+import { notFoundError, unauthorizedError } from "@/errors";
 import authRepositories from "@/repositories/authRepository";
 import userRepository, { UserDataBody } from "@/repositories/userRepository";
-import { User } from "@prisma/client";
+import { Session, User } from "@prisma/client";
 
 async function findUserData(userId: number): Promise<User> {
     const session = await authRepositories.findSessionByUserId(userId);
@@ -20,13 +20,23 @@ async function updateUserData(userId: number, userData: UserDataBody): Promise<U
     const user = await userRepository.getUserById(userId);
     if (!user) throw notFoundError();
     
-    console.log(userData)
     return await userRepository.putUserDataById(userId, userData);
+}
+
+async function deleteUserSession(userId: number): Promise<Session> {
+    const session = await authRepositories.findSessionByUserId(userId);
+    if (!session) throw unauthorizedError();
+
+    const user = await userRepository.getUserById(userId);
+    if (!user) throw notFoundError();
+
+    return await userRepository.deleteSessionById(session.id);
 }
 
 const userServices = {
     findUserData,
-    updateUserData
+    updateUserData,
+    deleteUserSession
 }
 
 export default userServices;
