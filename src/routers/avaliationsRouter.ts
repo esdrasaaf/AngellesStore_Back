@@ -1,5 +1,5 @@
-import { deleteAvaliations, getAvaliations, getUserAvaliations, postAvaliations, putAvaliations } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { deleteAvaliations, getAvaliations, getUserAvaliations, postAvaliations, putAvaliations } from "../controllers/avaliationsController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const avaliationsRouter = Router();

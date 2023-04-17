@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Avaliations } from "@prisma/client";
 
 async function getAvaliationsByProductId(productId: number): Promise<Avaliations[]> {

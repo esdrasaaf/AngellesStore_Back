@@ -1,7 +1,8 @@
-import { notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import cartRepository, { CartWithProduct } from "@/repositories/cartRepository";
-import productsRepositories from "@/repositories/productsRepository";
+import { notFoundError } from "../errors/notFound-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import cartRepository, { CartWithProduct } from "../repositories/cartRepository";
+import productsRepositories from "../repositories/productsRepository";
 import { Cart } from "@prisma/client";
 
 async function findManyCartProducts(userId: number): Promise<Cart[]> {

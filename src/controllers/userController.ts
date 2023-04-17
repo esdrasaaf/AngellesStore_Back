@@ -1,6 +1,6 @@
-import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import { UserDataBody } from "@/repositories/userRepository";
-import userServices from "@/services/userServices";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
+import { UserDataBody } from "../repositories/userRepository";
+import userServices from "../services/userServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 

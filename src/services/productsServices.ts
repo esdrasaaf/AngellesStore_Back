@@ -1,6 +1,7 @@
-import { notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import productsRepositories, { ProductsFilter } from "@/repositories/productsRepository";
+import { notFoundError } from "../errors/notFound-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import productsRepositories, { ProductsFilter } from "../repositories/productsRepository";
 import { Products } from "@prisma/client";
 
 async function findManyProducts(userId: number, productsFilter: ProductsFilter): Promise<Products[]>  {

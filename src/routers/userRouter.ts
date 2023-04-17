@@ -1,5 +1,5 @@
-import { getUserData, putUserData, logoutUser } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { getUserData, putUserData, logoutUser } from "../controllers/userController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const userRouters = Router();

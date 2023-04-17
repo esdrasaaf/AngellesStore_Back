@@ -1,4 +1,4 @@
-import { getAllCategories } from "@/controllers";
+import { getAllCategories } from "../controllers/categoryController";
 import { Router } from "express";
 
 const categoryRouter = Router();

@@ -1,4 +1,4 @@
-import { getAllPromotionImages } from "@/controllers";
+import { getAllPromotionImages } from "../controllers/promotionImagesController";
 import { Router } from "express";
 
 const promotionImagesRouter = Router();

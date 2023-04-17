@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Brands } from "@prisma/client";
 
 async function getBrands(): Promise<Brands[]> {

@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { Colors } from "@prisma/client";
 
 async function getColors(): Promise<Colors[]> {

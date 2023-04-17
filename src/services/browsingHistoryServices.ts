@@ -1,7 +1,8 @@
-import { notFoundError, unauthorizedError } from "@/errors";
-import authRepositories from "@/repositories/authRepository";
-import browsingHistoryRepositories from "@/repositories/browsingHistoryRepository";
-import productsRepositories from "@/repositories/productsRepository";
+import { notFoundError } from "../errors/notFound-error";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import authRepositories from "../repositories/authRepository";
+import browsingHistoryRepositories from "../repositories/browsingHistoryRepository";
+import productsRepositories from "../repositories/productsRepository";
 import { BrowsingHistory } from "@prisma/client";
 
 async function findManyHistoric(userId: number): Promise<BrowsingHistory[]> {

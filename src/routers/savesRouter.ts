@@ -1,5 +1,5 @@
-import { getSavedProducts, postSave } from "@/controllers";
-import { authenticateToken } from "@/middlewares/authenticationMiddleware";
+import { getSavedProducts, postSave } from "../controllers/savesController";
+import { authenticateToken } from "../middlewares/authenticationMiddleware";
 import { Router } from "express";
 
 const savesRouters = Router();

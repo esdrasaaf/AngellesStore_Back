@@ -1,4 +1,4 @@
-import { getAllColors } from "@/controllers";
+import { getAllColors } from "../controllers/colorsController";
 import { Router } from "express";
 
 const colorRouter = Router();

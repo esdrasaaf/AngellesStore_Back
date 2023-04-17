@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { PromotionsImages } from "@prisma/client";
 
 async function getPromos(): Promise<PromotionsImages[]> {

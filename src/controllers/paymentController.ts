@@ -1,5 +1,5 @@
-import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import paymentService from "@/services/paymentService";
+import { AuthenticatedRequest } from "../middlewares/authenticationMiddleware";
+import paymentService from "../services/paymentServices";
 import { Products } from "@prisma/client";
 import { Response } from "express";
 import httpStatus from "http-status";

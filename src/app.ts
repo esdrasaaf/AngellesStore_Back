@@ -1,24 +1,23 @@
 import express, { Express } from "express";
 import cors from "cors";
 
-import { loadEnv, connectDb, disconnectDB } from "./config";
+import { loadEnv } from "./config/envs";
+import { connectDb, disconnectDB } from "./config/database";
 
 loadEnv();
 
-import { 
-  authenticationRouter, 
-  brandRouter, 
-  cartRouter, 
-  categoryRouter, 
-  colorRouter, 
-  browsingHistoryRouter, 
-  productsRouters, 
-  promotionImagesRouter, 
-  savesRouters, 
-  userRouters, 
-  avaliationsRouter, 
-  paymentRouter
-} from "@/routers";
+import { authenticationRouter } from "./routers/authenticationRouter";
+import { categoryRouter } from "./routers/categoryRouter";
+import { brandRouter } from "./routers/brandRouter";
+import { colorRouter } from "./routers/colorRouter";
+import { promotionImagesRouter } from "./routers/promotionImagesRoutes";
+import { productsRouters } from "./routers/productRouters";
+import { browsingHistoryRouter } from "./routers/browsingHistoryRouter";
+import { cartRouter } from "./routers/cartRouter";
+import { savesRouters } from "./routers/savesRouter";
+import { userRouters } from "./routers/userRouter";
+import { avaliationsRouter } from "./routers/avaliationsRouter";
+import { paymentRouter } from "./routers/paymentRouter";
 
 const app = express();
 

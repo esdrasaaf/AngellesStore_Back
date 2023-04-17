@@ -1,4 +1,4 @@
-import { prisma } from "@/config";
+import { prisma } from "../config/database";
 import { BrowsingHistory } from "@prisma/client";
 
 async function getHistorics(userId: number): Promise<BrowsingHistory[]> {
