@@ -9,11 +9,7 @@ export async function getHistoricNavigation(req: AuthenticatedRequest, res: Resp
     try {
         const historics = await historicServices.findManyHistoric(userId);
         return res.status(httpStatus.OK).send(historics);
-    } catch (error) {
-        if (error.status === 404) {
-            return res.status(error.status).send("Seu histórico de navegação está vazio!");
-        }
-        
+    } catch (error) {        
         return res.status(error.status).send("Você precisa estar logado para ver seu histórico!");
     }
 }

@@ -5,3 +5,4 @@ export * from "./colorRouter";
 export * from "./promotionImagesRoutes";
 export * from "./productRouters";
 export * from "./historicRouter";
+export * from "./cartRouter";
