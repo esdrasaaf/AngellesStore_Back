@@ -1,4 +1,4 @@
-import { getHistoricNavigation, postHistoric } from "@/controllers";
+import { getHistoricNavigation, postHistoric, deleteHistoric } from "@/controllers";
 import { authenticateToken } from "@/middlewares/authenticationMiddleware";
 import { Router } from "express";
 
@@ -8,5 +8,6 @@ browsingHistoryRouter
   .all("/*", authenticateToken)
   .get("/", getHistoricNavigation)
   .post("/", postHistoric)
+  .delete("/:historicId", deleteHistoric)
  
 export { browsingHistoryRouter };

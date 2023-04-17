@@ -8,3 +8,4 @@ export * from "./browsingHistoryRouter";
 export * from "./cartRouter";
 export * from "./savesRouter";
 export * from "./userRouter";
+export * from "./avaliationsRouter";

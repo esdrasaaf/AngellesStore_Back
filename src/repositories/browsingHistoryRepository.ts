@@ -24,6 +24,14 @@ async function checkIfHistoricExist(userId: number, productId: number): Promise<
     });
 };
 
+async function getHistoricById(historicId: number): Promise<BrowsingHistory> {
+    return prisma.browsingHistory.findFirst({
+        where: {
+            id: historicId
+        }
+    });
+};
+
 async function postHistorics(userId: number, productId: number): Promise<BrowsingHistory> {
     return prisma.browsingHistory.create({
         data: {
@@ -44,11 +52,21 @@ async function updateHistoric(id: number): Promise<BrowsingHistory> {
     });
 };
 
+async function deleteHistoricById(historicId: number): Promise<BrowsingHistory> {
+    return prisma.browsingHistory.delete({
+        where: {
+            id: historicId
+        }
+    });
+};
+
 const browsingHistoryRepositories = {
     getHistorics,
     postHistorics,
     updateHistoric,
-    checkIfHistoricExist
+    checkIfHistoricExist,
+    getHistoricById,
+    deleteHistoricById
 };
 
 export default browsingHistoryRepositories;
