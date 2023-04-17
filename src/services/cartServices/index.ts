@@ -34,10 +34,18 @@ async function deleteCartProduct(userId: number, cartId: number): Promise<CartWi
     return await cartRepository.deleteCart(cartId);
 }
 
+async function clearUserCart(userId: number) {
+    const session = await authRepositories.findSessionByUserId(userId);
+    if (!session) throw unauthorizedError();
+
+    return await cartRepository.clearCart(userId);
+}
+
 const cartServices = {
     findManyCartProducts,
     createCartObj,
-    deleteCartProduct
+    deleteCartProduct,
+    clearUserCart
 }
 
 export default cartServices;

@@ -1,4 +1,4 @@
-import { deleteProductOfCart, getUserCart, postProductOnCart } from "@/controllers";
+import { deleteAllCart, deleteProductOfCart, getUserCart, postProductOnCart } from "@/controllers";
 import { authenticateToken } from "@/middlewares/authenticationMiddleware";
 import { Router } from "express";
 
@@ -9,5 +9,6 @@ cartRouter
   .get("/", getUserCart)
   .post("/", postProductOnCart)
   .delete("/:cartId", deleteProductOfCart)
+  .delete("/clear/all", deleteAllCart)
 
 export { cartRouter };

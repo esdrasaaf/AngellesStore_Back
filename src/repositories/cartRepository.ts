@@ -43,13 +43,22 @@ async function deleteCart(id: number): Promise<CartWithProduct> {
     });
 };
 
+async function clearCart(id: number) {
+    return prisma.cart.deleteMany({
+        where: {
+            userId: id
+        }
+    });
+};
+
 export type CartWithProduct = Cart & { Products: Products }
 
 const cartRepository = {
     getCartByUserId,
     postCartObj,
     deleteCart,
-    getCartById
+    getCartById,
+    clearCart
 };
 
 export default cartRepository;

@@ -1,4 +1,4 @@
-import { notFoundError, unauthorizedError, badRequestError } from "@/errors";
+import { unauthorizedError, badRequestError } from "@/errors";
 import authRepositories from "@/repositories/authRepository";
 import productsRepositories from "@/repositories/productsRepository";
 import savedRepository, { SavedProductsWithProduct } from "@/repositories/savesRepository";

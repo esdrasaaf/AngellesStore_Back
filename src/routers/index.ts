@@ -9,3 +9,4 @@ export * from "./cartRouter";
 export * from "./savesRouter";
 export * from "./userRouter";
 export * from "./avaliationsRouter";
+export * from "./paymentRouter";

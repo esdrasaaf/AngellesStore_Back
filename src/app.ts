@@ -16,7 +16,8 @@ import {
   promotionImagesRouter, 
   savesRouters, 
   userRouters, 
-  avaliationsRouter 
+  avaliationsRouter, 
+  paymentRouter
 } from "@/routers";
 
 const app = express();
@@ -36,6 +37,7 @@ app
   .use("/saves", savesRouters)
   .use("/user", userRouters)
   .use("/avaliations", avaliationsRouter)
+  .use("/payment", paymentRouter)
 
 export function init(): Promise<Express> {
     connectDb();
