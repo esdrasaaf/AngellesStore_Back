@@ -1,5 +1,5 @@
 import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import cartServices from "@/services/CartServices";
+import cartServices from "@/services/cartServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 

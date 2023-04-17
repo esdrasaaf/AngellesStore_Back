@@ -8,18 +8,18 @@ datasource db {
 }
 
 model User {
-  id            Int             @id @default(autoincrement())
-  name          String          @db.VarChar(250)  
-  image         String          @default("")
-  email         String          @unique @db.VarChar(250)
-  password      String          @db.VarChar(250)
-  createdAt     DateTime        @default(now()) @db.Timestamp(6)
-  updatedAt     DateTime        @default(now()) @updatedAt @db.Timestamp(6)
-  Avaliations   Avaliations[]
-  Cart          Cart[]
-  Historics     Historics[]
-  SavedProducts SavedProducts[]
-  Session       Session[]
+  id              Int               @id @default(autoincrement())
+  name            String            @db.VarChar(250)
+  email           String            @unique @db.VarChar(250)
+  password        String            @db.VarChar(250)
+  createdAt       DateTime          @default(now()) @db.Timestamp(6)
+  updatedAt       DateTime          @default(now()) @updatedAt @db.Timestamp(6)
+  image           String            @default("")
+  Avaliations     Avaliations[]
+  BrowsingHistory BrowsingHistory[]
+  Cart            Cart[]
+  SavedProducts   SavedProducts[]
+  Session         Session[]
 }
 
 model Session {
@@ -65,63 +65,64 @@ model PromotionsImages {
 }
 
 model Products {
-  id            Int             @id @default(autoincrement())
-  image         String
-  name          String
-  price         Int
-  categoryId    Int
-  colorId       Int
-  brandId       Int
-  description   String
-  numberOfSales Int             @default(0)
-  updatedAt     DateTime        @default(now()) @db.Timestamp(6)
-  createdAt     DateTime        @default(now()) @db.Timestamp(6)
-  Avaliations   Avaliations[]
-  Cart          Cart[]
-  Historics     Historics[]
-  Brands        Brands          @relation(fields: [brandId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Categories    Categories      @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Colors        Colors          @relation(fields: [colorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  SavedProducts SavedProducts[]
-}
-
-model Historics {
-  id        Int      @id @default(autoincrement())
-  productId Int
-  userId    Int
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
-  Products  Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id              Int               @id @default(autoincrement())
+  image           String
+  name            String
+  price           Int
+  categoryId      Int
+  colorId         Int
+  brandId         Int
+  description     String
+  numberOfSales   Int               @default(0)
+  updatedAt       DateTime          @default(now()) @db.Timestamp(6)
+  createdAt       DateTime          @default(now()) @db.Timestamp(6)
+  Avaliations     Avaliations[]
+  BrowsingHistory BrowsingHistory[]
+  Cart            Cart[]
+  Brands          Brands            @relation(fields: [brandId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Categories      Categories        @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Colors          Colors            @relation(fields: [colorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  SavedProducts   SavedProducts[]
 }
 
 model Avaliations {
   id         Int       @id @default(autoincrement())
-  userId     Int?
-  productId  Int?
+  userId     Int
+  productId  Int
   avaliation String
   createdAt  DateTime  @default(now()) @db.Timestamp(6)
   updatedAt  DateTime  @default(now()) @db.Timestamp(6)
-  Products   Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User       User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  rating     Int       @default(0)
+  Products   Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User       User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Cart {
   id        Int       @id @default(autoincrement())
-  userId    Int?
-  productId Int?
+  userId    Int
+  productId Int
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
-  Products  Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User      User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Products  Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model SavedProducts {
   id        Int       @id @default(autoincrement())
-  userId    Int?
-  productId Int?
+  userId    Int
+  productId Int
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime  @default(now()) @db.Timestamp(6)
-  Products  Products? @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  User      User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Products  Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model BrowsingHistory {
+  id        Int      @id(map: "Historics_pkey") @default(autoincrement())
+  productId Int
+  userId    Int
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  Products  Products @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Historics_productId_fkey")
+  User      User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Historics_userId_fkey")
 }

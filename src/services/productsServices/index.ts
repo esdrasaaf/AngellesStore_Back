@@ -1,13 +1,13 @@
 import { notFoundError, unauthorizedError } from "@/errors";
 import authRepositories from "@/repositories/authRepository";
-import productsRepositories from "@/repositories/productsRepository";
+import productsRepositories, { ProductsFilter } from "@/repositories/productsRepository";
 import { Products } from "@prisma/client";
 
-async function findManyProducts(userId: number): Promise<Products[]>  {
+async function findManyProducts(userId: number, productsFilter: ProductsFilter): Promise<Products[]>  {
     const session = await authRepositories.findSessionByUserId(userId);
     if (!session) throw unauthorizedError();
 
-    const products = await productsRepositories.getProducts();
+    const products = await productsRepositories.getProducts(productsFilter);
     if (products.length === 0) throw notFoundError();
 
     return products

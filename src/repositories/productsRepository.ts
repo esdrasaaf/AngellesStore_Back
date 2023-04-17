@@ -1,10 +1,36 @@
 import { prisma } from "@/config";
 import { Products } from "@prisma/client";
 
-async function getProducts(): Promise<Products[]> {
+export type ProductsFilter = {
+    categoryIds: number[], 
+    colorIds: number[], 
+    brandIds: number[]
+}
+
+async function getProducts(productsFilter: ProductsFilter): Promise<Products[]> {
+    let filter = {
+        where: {}
+    };
+
+    if (productsFilter.categoryIds.length !== 0) {
+        filter.where = {...filter.where, categoryId: { in: productsFilter.categoryIds }}
+    }
+
+    if (productsFilter.colorIds.length !== 0) {
+        filter.where = {...filter.where, colorId: { in: productsFilter.colorIds }}
+    }
+
+    if (productsFilter.brandIds.length !== 0) {
+        filter.where = {...filter.where, brandId: { in: productsFilter.brandIds }}
+    }
+
     return prisma.products.findMany({
+        ...filter,
         orderBy:{
             id: 'asc'
+        },
+        include: {
+            Avaliations: true
         }
     });
 };

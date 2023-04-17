@@ -2,11 +2,11 @@ import { getHistoricNavigation, postHistoric } from "@/controllers";
 import { authenticateToken } from "@/middlewares/authenticationMiddleware";
 import { Router } from "express";
 
-const historicRouter = Router();
+const browsingHistoryRouter = Router();
 
-historicRouter
+browsingHistoryRouter
   .all("/*", authenticateToken)
   .get("/", getHistoricNavigation)
   .post("/", postHistoric)
  
-export { historicRouter };
+export { browsingHistoryRouter };

@@ -1,17 +1,20 @@
 import { AuthenticatedRequest } from "@/middlewares/authenticationMiddleware";
-import productsServices from "@/services/ProductsServices";
+import { ProductsFilter } from "@/repositories/productsRepository";
+import productsServices from "@/services/productsServices";
 import { Response } from "express";
 import httpStatus from "http-status";
 
 export async function getAllProducts(req: AuthenticatedRequest, res: Response) {
     const { userId } = req;
+    const { productsFilter } = req.body;
+    const filter = productsFilter as ProductsFilter;
 
     try {
-        const products = await productsServices.findManyProducts(userId);
+        const products = await productsServices.findManyProducts(userId, filter);
         return res.status(httpStatus.OK).send(products);
     } catch (error) {
         if (error.status === 404) return res.status(error.status).send("Não temos produtos disponíveis no momento!");
-        return res.status(error.status).send("Você precisa estar logado para acessar os produtos da loja!");
+        return res.status(401).send(error.message);
     }
 }
 
