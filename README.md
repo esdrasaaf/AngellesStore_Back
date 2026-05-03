@@ -21,7 +21,7 @@
 <br>
 
 ### Idealização do projeto
-- Esse projeto foi idealizado a partir de um sonho antigo da minha mãe, Anathusia Antero. Ela almejava ter uma marca de roupas infantis, empreender e criar seu próprio comércio. Então, utilizando meus conhecimentos em programação, desenvolvi um ecommerce focado em roupas infantis, para dar o que seria o ponta pé inicial para a concretização deste objetivo. Vale salientar que o site NÃO está totalmente completo! Mas, já está bem completo e com bastante funcionalidades. 
+- Esse projeto foi idealizado a partir de um sonho antigo da minha mãe. Ela almejava ter uma marca de roupas infantis, empreender e criar seu próprio comércio. Então, utilizando meus conhecimentos em programação, desenvolvi um ecommerce focado em roupas infantis, para dar o que seria o ponta pé inicial para a concretização deste objetivo. Vale salientar que o site NÃO está totalmente completo! Mas, já está bem completo e com bastante funcionalidades. 
 
 ### Link do front-end desse projeto
 - https://github.com/esdrasaaf/AngellesStore_Front
